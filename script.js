@@ -8,17 +8,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 页面加载完成后隐藏加载动画
     window.addEventListener('load', function() {
-        loadingElement.style.opacity = '0';
-        setTimeout(() => {
-            loadingElement.style.display = 'none';
-        }, 300);
+        hideLoadingAnimation(loadingElement);
     });
     
-    // 初始化AOS动画库
-    AOS.init({
-        duration: 1000,
-        once: true
-    });
+    // 添加一个延迟隐藏加载动画的保障机制
+    setTimeout(() => {
+        hideLoadingAnimation(loadingElement);
+    }, 3000);
+    
+    // 隐藏加载动画的函数
+    function hideLoadingAnimation(element) {
+        if (element && element.style) {
+            element.style.opacity = '0';
+            setTimeout(() => {
+                if (element.parentNode) {
+                    element.parentNode.removeChild(element);
+                }
+            }, 300);
+        }
+    }
+    
+    // 初始化AOS动画库（添加错误处理）
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true,
+            // 添加降级选项，确保即使AOS未正确加载，元素也能显示
+            disable: function() {
+                // 如果屏幕阅读器正在使用，则禁用AOS
+                return navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/) &&
+                       window.innerWidth < 768;
+            }
+        });
+    } else {
+        // 如果AOS未正确加载，移除所有data-aos属性以确保元素可见
+        console.warn('AOS library not loaded. Removing data-aos attributes to ensure content visibility.');
+        const aosElements = document.querySelectorAll('[data-aos]');
+        aosElements.forEach(element => {
+            element.style.opacity = '1';
+            element.style.transform = 'none';
+        });
+    }
     
     // 平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -36,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // 表单提交处理
-    const contactForm = document.querySelector('#contact form');
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -70,17 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToTopButton = document.createElement('button');
     backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTopButton.className = 'btn btn-primary back-to-top';
-    backToTopButton.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        z-index: 9999;
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    `;
     document.body.appendChild(backToTopButton);
     
     window.addEventListener('scroll', function() {
