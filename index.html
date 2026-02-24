@@ -1,458 +1,157 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Civic Atlas · Freedom Compass</title>
+    <meta
+      name="description"
+      content="Inspired by freedom themes: liberty, rule of law, civic responsibility, and our shared future."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <canvas id="cosmos"></canvas>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>freedom的GitHub个人主页</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- AOS动画库 -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- 自定义CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome图标 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body>
-    <!-- 导航栏 -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">freedom</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">关于我</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#experience">经验</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">教育</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">技能</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">项目</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">博客</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">联系</a>
-                    </li>
-                </ul>
-            </div>
+    <header class="hero">
+      <nav class="top-nav">
+        <span class="brand" data-i18n="brand">Civic Atlas</span>
+        <div class="nav-actions">
+          <a href="#civic-action" class="mini-link" data-i18n="navAction">Public Action</a>
+          <button class="lang-toggle" type="button" id="lang-toggle" aria-label="切换到中文">中文</button>
         </div>
-    </nav>
+      </nav>
 
-    <!-- 首页横幅 -->
-    <header class="banner">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-md-12 text-center text-white">
-                    <h1 class="display-3 fw-bold" data-aos="fade-up">欢迎来到我的GitHub主页</h1>
-                    <p class="lead" data-aos="fade-up" data-aos-delay="100">高级软件工程师 | 技术架构师 | 开源贡献者</p>
-                    <a href="#about" class="btn btn-primary btn-lg mt-3" data-aos="fade-up"
-                        data-aos-delay="200">了解更多</a>
-                </div>
-            </div>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow" data-i18n="eyebrow">Inspired by freedom theme</p>
+          <h1 data-i18n="heroTitle">Freedom endures when institutions and citizens safeguard it together.</h1>
+          <p class="subtitle" data-i18n="heroSubtitle">
+            Sustainable liberty belongs not only to personal expression, but also to rule-of-law boundaries,
+            transparency, and civic participation. We are both rights-holders and builders of our shared future.
+          </p>
+          <a href="#principles" class="cta" data-i18n="heroCta">Explore Core Principles</a>
         </div>
+
+        <div class="orbits" aria-hidden="true">
+          <svg viewBox="0 0 560 560" class="glyph" role="img">
+            <defs>
+              <linearGradient id="ringGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff6df" />
+                <stop offset="50%" stop-color="#f3cb87" />
+                <stop offset="100%" stop-color="#be7830" />
+              </linearGradient>
+              <linearGradient id="shieldBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#91b3ff" />
+                <stop offset="100%" stop-color="#234797" />
+              </linearGradient>
+              <radialGradient id="coreAura" cx="50%" cy="45%" r="55%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75" />
+                <stop offset="55%" stop-color="#8fb1ff" stop-opacity="0.38" />
+                <stop offset="100%" stop-color="#8fb1ff" stop-opacity="0" />
+              </radialGradient>
+              <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            <circle cx="280" cy="280" r="245" class="ring ring-a" />
+            <circle cx="280" cy="280" r="198" class="ring ring-b" />
+            <circle cx="280" cy="280" r="150" class="ring ring-c" />
+
+            <g class="value-orbit">
+              <path id="valuePath" d="M280 80a200 200 0 1 1 0 400a200 200 0 1 1 0-400" />
+              <text>
+                <textPath href="#valuePath" startOffset="4%" data-i18n="valueOrbit"
+                  >Rule of Law · Responsibility · Participation ·</textPath
+                >
+              </text>
+            </g>
+
+            <g class="rays">
+              <path d="M280 30v56" />
+              <path d="M280 474v56" />
+              <path d="M30 280h56" />
+              <path d="M474 280h56" />
+              <path d="M105 105l40 40" />
+              <path d="M415 415l40 40" />
+              <path d="M455 105l-40 40" />
+              <path d="M145 415l-40 40" />
+            </g>
+
+            <circle cx="280" cy="280" r="132" fill="url(#coreAura)" />
+
+            <path
+              d="M280 122l130 75v150c0 84-64 151-130 188-66-37-130-104-130-188V197z"
+              class="shield"
+              fill="url(#shieldBlue)"
+            />
+
+            <path
+              d="M280 162l92 53v109c0 57-41 102-92 133-51-31-92-76-92-133V215z"
+              fill="none"
+              stroke="url(#ringGlow)"
+              stroke-width="3.2"
+              filter="url(#softGlow)"
+            />
+
+            <path
+              d="M245 278l24 24 49-50"
+              fill="none"
+              stroke="#ffe9bc"
+              stroke-width="8.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              filter="url(#softGlow)"
+            />
+
+            <circle cx="280" cy="280" r="20" class="core-dot" />
+          </svg>
+        </div>
+      </div>
     </header>
 
-    <!-- 关于我 -->
-    <section id="about" class="py-5">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">关于我</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" data-aos="fade-up">
-                    <h3 class="mb-4 text-center">专业背景</h3>
-                    <p class="lead text-center">我是一名拥有8年经验的全栈软件工程师，专注于构建高性能、可扩展的Web应用程序和分布式系统。</p>
-                    <p class="text-center">在我的职业生涯中，我参与了多个大型企业级项目的设计与实现，涵盖了金融科技、电子商务和云计算等领域。我对技术充满热情，致力于通过代码解决复杂业务问题。
-                    </p>
-                    <p class="text-center">作为开源社区的积极参与者，我在GitHub上维护了多个项目，并为知名开源框架贡献了代码。我相信技术的力量可以改变世界，而我正致力于成为这一变革的推动者。
-                    </p>
-                    <div class="mt-4 text-center">
-                        <a href="resume.pdf" class="btn btn-outline-primary me-2">下载简历</a>
-                        <a href="#contact" class="btn btn-primary">联系我</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <main>
+      <section class="panel" id="principles">
+        <h2 data-i18n="panel1Title">01 · Freedom Needs Rule of Law</h2>
+        <p data-i18n="panel1Body">
+          Freedom is not boundaryless impulse, but equal protection and fair treatment for everyone within a legal
+          framework. When rules are public and traceable, trust can grow and society can move forward steadily.
+        </p>
+      </section>
 
-    <!-- 工作经验 -->
-    <section id="experience" class="py-5">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">工作经验</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="timeline">
-                        <div class="timeline-item" data-aos="fade-right">
-                            <div class="timeline-badge bg-primary">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="timeline-panel p-4 rounded shadow">
-                                <div class="timeline-heading">
-                                    <h4 class="timeline-title">高级全栈工程师</h4>
-                                    <p class="text-muted">腾讯科技 | 2021年3月 - 至今</p>
-                                </div>
-                                <div class="timeline-body">
-                                    <ul>
-                                        <li>负责公司核心产品的架构设计和开发，使用React、Node.js和MongoDB技术栈</li>
-                                        <li>领导一个8人开发团队，成功交付了3个大型企业级项目</li>
-                                        <li>优化系统性能，将API响应时间减少了45%</li>
-                                        <li>引入微服务架构，提高了系统的可扩展性和可维护性</li>
-                                        <li>推动团队采用DevOps实践，CI/CD流程使部署频率提高300%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-item" data-aos="fade-left">
-                            <div class="timeline-badge bg-primary">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="timeline-panel p-4 rounded shadow">
-                                <div class="timeline-heading">
-                                    <h4 class="timeline-title">软件工程师</h4>
-                                    <p class="text-muted">阿里巴巴集团 | 2018年7月 - 2021年2月</p>
-                                </div>
-                                <div class="timeline-body">
-                                    <ul>
-                                        <li>参与开发电商平台的前端和后端功能，使用Vue.js和Spring Boot</li>
-                                        <li>实现用户认证和授权系统，支持千万级用户并发访问</li>
-                                        <li>优化数据库查询，将页面加载速度提升了35%</li>
-                                        <li>编写技术文档和培训材料，帮助新员工快速上手</li>
-                                        <li>参与代码审查，提升团队整体代码质量</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="timeline-item" data-aos="fade-right">
-                            <div class="timeline-badge bg-primary">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <div class="timeline-panel p-4 rounded shadow">
-                                <div class="timeline-heading">
-                                    <h4 class="timeline-title">初级软件工程师</h4>
-                                    <p class="text-muted">滴滴出行 | 2016年9月 - 2018年6月</p>
-                                </div>
-                                <div class="timeline-body">
-                                    <ul>
-                                        <li>参与公司调度系统的开发，使用Angular和Express.js</li>
-                                        <li>负责单元测试和集成测试，确保代码质量</li>
-                                        <li>协助部署和维护生产环境，处理线上问题</li>
-                                        <li>参与代码审查，提升团队整体代码质量</li>
-                                        <li>优化地图API调用，降低服务器成本20%</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <section class="panel">
+        <h2 data-i18n="panel2Title">02 · Rights Grow with Responsibility</h2>
+        <p data-i18n="panel2Body">
+          Civic rights matter most when exercised actively and rationally: joining public dialogue, respecting facts,
+          and upholding others' dignity. Responsibility aligns "my freedom" with "our future."
+        </p>
+      </section>
 
-    <!-- 教育背景 -->
-    <section id="education" class="py-5">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">教育背景</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card mb-4" data-aos="fade-up">
-                        <div class="card-body">
-                            <h5 class="card-title">计算机科学与技术硕士</h5>
-                            <p class="card-text text-muted">清华大学 | 2014年9月 - 2016年6月</p>
-                            <p class="card-text">
-                                研究方向：分布式系统与云计算。毕业论文《基于微服务架构的电商平台设计与实现》获得优秀论文奖。主修课程：高级算法设计与分析、分布式系统原理、大数据处理技术等。</p>
-                        </div>
-                    </div>
-                    <div class="card mb-4" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-body">
-                            <h5 class="card-title">软件工程学士</h5>
-                            <p class="card-text text-muted">华中科技大学 | 2010年9月 - 2014年6月</p>
-                            <p class="card-text">主修课程：数据结构与算法、操作系统、数据库原理、软件工程、计算机网络等。在校期间多次获得学业奖学金，参与多个开源项目。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <section class="panel" id="civic-action">
+        <h2 data-i18n="panel3Title">03 · Participation Shapes the Future</h2>
+        <p data-i18n="panel3Body">
+          Public life is not a spectator seat. Every vote, every community action, and every insistence on transparent
+          governance turns abstract values into real institutional outcomes.
+        </p>
+      </section>
+    </main>
 
-    <!-- 技能 -->
-    <section id="skills" class="py-5 bg-dark text-white">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">专业技能</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card bg-secondary h-100">
-                        <div class="card-body text-center">
-                            <i class="fab fa-html5 fa-3x mb-3"></i>
-                            <h4 class="card-title">前端技术</h4>
-                            <p class="card-text">精通React、Vue.js、Angular等现代前端框架，熟悉Webpack、Vite等构建工具，掌握响应式设计和移动端适配</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card bg-secondary h-100">
-                        <div class="card-body text-center">
-                            <i class="fab fa-node-js fa-3x mb-3"></i>
-                            <h4 class="card-title">后端技术</h4>
-                            <p class="card-text">熟练掌握Node.js、Python、Java等后端技术，熟悉RESTful API设计和微服务架构，具备高并发系统设计经验</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card bg-secondary h-100">
-                        <div class="card-body text-center">
-                            <i class="fas fa-database fa-3x mb-3"></i>
-                            <h4 class="card-title">数据库与云服务</h4>
-                            <p class="card-text">
-                                熟悉MySQL、PostgreSQL、MongoDB等数据库，具备AWS、Azure云平台使用经验，掌握Docker和Kubernetes容器化技术</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <h3 class="text-center mb-4">技能水平</h3>
-                    <div class="skill-bar" data-aos="fade-up">
-                        <div class="d-flex justify-content-between">
-                            <span>JavaScript/TypeScript</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-bar mt-3" data-aos="fade-up" data-aos-delay="100">
-                        <div class="d-flex justify-content-between">
-                            <span>React/Vue.js</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-bar mt-3" data-aos="fade-up" data-aos-delay="200">
-                        <div class="d-flex justify-content-between">
-                            <span>Node.js/Python</span>
-                            <span>88%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-bar mt-3" data-aos="fade-up" data-aos-delay="300">
-                        <div class="d-flex justify-content-between">
-                            <span>系统架构设计</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-bar mt-3" data-aos="fade-up" data-aos-delay="400">
-                        <div class="d-flex justify-content-between">
-                            <span>DevOps/CI/CD</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 项目 -->
-    <section id="projects" class="py-5">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">项目经验</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">腾讯云微服务治理平台</h5>
-                            <p class="card-text"><strong>技术栈:</strong> React, Node.js, MongoDB, Redis, Docker,
-                                Kubernetes</p>
-                            <p class="card-text">设计并实现了一个高并发的微服务治理平台，支持每日千万级API调用。采用微服务架构，实现了服务注册发现、配置管理、熔断降级等核心功能。</p>
-                            <p class="card-text"><strong>成果:</strong> 系统稳定性达到99.99%，平均响应时间小于150ms，已服务内部200+个业务系统</p>
-                            <a href="https://github.com/tencent-cloud/microservice-governance" class="btn btn-primary"
-                                target="_blank">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">阿里电商实时数据平台</h5>
-                            <p class="card-text"><strong>技术栈:</strong> Vue.js, Java Spring Boot, Kafka, Elasticsearch,
-                                Kibana</p>
-                            <p class="card-text">开发了一个实时数据分析平台，能够处理和可视化TB级别的数据流。支持自定义仪表板和预警功能，帮助企业做出数据驱动的决策。</p>
-                            <p class="card-text"><strong>成果:</strong> 数据处理延迟降低至毫秒级，用户满意度提升45%，日均处理数据量达50TB</p>
-                            <a href="https://github.com/alibaba/realtime-data-platform" class="btn btn-primary"
-                                target="_blank">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">滴滴智能调度系统</h5>
-                            <p class="card-text"><strong>技术栈:</strong> Angular, Express.js, PostgreSQL, Redis, Docker
-                            </p>
-                            <p class="card-text">构建了一套智能调度系统，通过机器学习算法优化车辆分配，显著提高了出行效率和用户体验。</p>
-                            <p class="card-text"><strong>成果:</strong> 用户等待时间平均减少25%，司机接单效率提升30%，系统日均处理订单1000万+</p>
-                            <a href="https://github.com/didi/smart-dispatch" class="btn btn-primary"
-                                target="_blank">查看详情</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 技术博客 -->
-    <section id="blog" class="py-5">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">技术分享</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">微服务架构在腾讯的实践与优化</h5>
-                            <p class="card-text text-muted">2025年4月18日</p>
-                            <p class="card-text">分享在腾讯大规模微服务架构实践中的经验，包括服务治理、性能优化、故障排查等关键要点...</p>
-                            <a href="https://juejin.cn/post/microservice-practice-at-tencent"
-                                class="btn btn-outline-primary" target="_blank">阅读更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">前端性能优化在电商平台的实践</h5>
-                            <p class="card-text text-muted">2025年2月28日</p>
-                            <p class="card-text">探讨在阿里电商平台中应用的前端性能优化技术，包括代码分割、懒加载、缓存策略等...</p>
-                            <a href="https://segmentfault.com/a/15900000256789" class="btn btn-outline-primary"
-                                target="_blank">阅读更多</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title">基于机器学习的智能调度算法</h5>
-                            <p class="card-text text-muted">2024年12月15日</p>
-                            <p class="card-text">介绍在滴滴出行中应用的智能调度算法，包括数据预处理、模型训练和在线部署的完整流程...</p>
-                            <a href="https://zhuanlan.zhihu.com/p/123456789" class="btn btn-outline-primary"
-                                target="_blank">阅读更多</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-md-12 text-center">
-                    <a href="https://juejin.cn/user/123456789" class="btn btn-primary btn-lg" target="_blank">查看更多文章</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系方式 -->
-    <section id="contact" class="py-5 bg-dark text-white">
-        <div class="container pt-5">
-            <div class="row">
-                <div class="col-md-12 text-center mb-5">
-                    <h2 class="display-4 fw-bold" data-aos="fade-up">联系我</h2>
-                    <hr class="w-25 mx-auto">
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6" data-aos="fade-up">
-                    <form id="contactForm">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">姓名</label>
-                            <input type="text" class="form-control" id="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">邮箱</label>
-                            <input type="email" class="form-control" id="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">消息</label>
-                            <textarea class="form-control" id="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">发送消息</button>
-                    </form>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-md-12 text-center">
-                    <a href="https://github.com/liming-dev" class="text-white me-3" target="_blank"><i
-                            class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/liming-profile" class="text-white me-3" target="_blank"><i
-                            class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://twitter.com/liming_tweets" class="text-white me-3" target="_blank"><i
-                            class="fab fa-twitter fa-2x"></i></a>
-                    <a href="https://juejin.cn/user/123456789" class="text-white"><i
-                            class="fab fa-weixin fa-2x"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    <footer class="py-4 bg-secondary text-white text-center">
-        <div class="container">
-            <p>© 2025 freedom的GitHub个人主页. 保留所有权利.</p>
-        </div>
+    <footer>
+      <p data-i18n="footer">Freedom · Responsibility · Participation · Shared Future</p>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS动画库 -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- 自定义JS -->
-    <script src="script.js"></script>
-</body>
-
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
